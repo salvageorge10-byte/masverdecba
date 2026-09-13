@@ -25,7 +25,9 @@ export default function MobileMenu({
 
   return (
     <div
-      className={`fixed inset-0 z-50 overflow-hidden xl:hidden ${open ? "" : "pointer-events-none"}`}
+      className={`fixed inset-0 z-50 overflow-hidden transition-opacity duration-300 xl:hidden ${
+        open ? "opacity-100" : "pointer-events-none opacity-0"
+      }`}
       aria-hidden={!open}
     >
       <div
