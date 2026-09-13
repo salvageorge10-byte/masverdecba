@@ -1,6 +1,16 @@
 // Información comercial real de Más Verde, relevada de masverdecba.com.ar.
 // No agregar datos que no puedan verificarse contra el sitio actual o el cliente.
 
+// Rating verificado en la ficha de Google Maps del depósito Córdoba
+// ("Mas Verde", coincide en teléfono y sitio web). Google no expone la
+// cantidad de reseñas ni su texto sin sesión iniciada, así que solo se usa
+// el puntaje agregado — nunca se muestran reseñas individuales inventadas.
+// Ver masverde-audit/google-social-verification-2026-09-13.txt para el detalle.
+export const GOOGLE_RATING = {
+  value: 4.9,
+  url: "https://www.google.com/maps/place/Mas+Verde/@-31.4382667,-64.2027013,17z/data=!3m1!4b1!4m6!3m5!1s0x9432a3471434fed9:0xf2dc242038f83544!8m2!3d-31.4382667!4d-64.2027013!16s%2Fg%2F11mcfw0z71",
+};
+
 export const COMPANY = {
   name: "Más Verde",
   legalName: "Más Verde CBA",
@@ -17,7 +27,9 @@ export interface Location {
   label: string;
   city: string;
   province: string;
-  /** Coordenadas de referencia a nivel ciudad (no dirección exacta del depósito). */
+  /** Dirección real, verificada en la ficha de Google Maps de cada depósito. */
+  address: string;
+  /** Coordenadas exactas tomadas de la ficha de Google Maps (no aproximadas). */
   coordinates: [number, number];
   image: string;
 }
@@ -28,7 +40,8 @@ export const LOCATIONS: Location[] = [
     label: "Depósito Córdoba",
     city: "Córdoba",
     province: "Córdoba",
-    coordinates: [-31.4201, -64.1888],
+    address: "Dr. José Manuel Álvarez 593, Córdoba",
+    coordinates: [-31.4382667, -64.2027013],
     image: "/images/empresa/cordoba.jpg",
   },
   {
@@ -36,7 +49,8 @@ export const LOCATIONS: Location[] = [
     label: "Depósito Bell Ville",
     city: "Bell Ville",
     province: "Córdoba",
-    coordinates: [-32.6259, -62.689],
+    address: "RN9 Km501, Bell Ville, Córdoba",
+    coordinates: [-32.6062718, -62.6804804],
     image: "/images/empresa/bellville.jpg",
   },
 ];

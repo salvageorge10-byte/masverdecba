@@ -2,6 +2,14 @@ import { Project } from "@/types/project";
 
 // Todavía no contamos con material fotográfico ni datos verificados de canchas
 // u obras puntuales realizadas por Más Verde (dirección, superficie, fecha).
+//
+// Investigado activamente con Agent Browser el 2026-09-13 (Google Maps,
+// Instagram @masverde.cba, Facebook, masverdecba.com.ar): hay fotos reales
+// de instalaciones (gimnasio, cancha exterior, jardín de infantes, patios)
+// en Instagram, pero ninguna trae ubicación verificable. Ver detalle en
+// masverde-audit/google-social-verification-2026-09-13.txt. Esta lista
+// sigue vacía a propósito, no por falta de búsqueda.
+//
 // Cuando el cliente entregue ese material, cargarlo acá con este mismo shape:
 //
 // {

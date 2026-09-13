@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import CtaButton from "@/components/CtaButton";
 import { whatsapp } from "@/lib/whatsapp";
+import { GOOGLE_RATING } from "@/data/company";
 
 export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -46,9 +47,22 @@ export default function Hero() {
 
       <div className="relative w-full px-6 pb-10 lg:px-10 lg:pb-14">
         <div className="mx-auto max-w-[1440px]">
-          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[var(--color-lime)]">
-            Especialistas en césped sintético para fútbol
-          </p>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[var(--color-lime)]">
+              Especialistas en césped sintético para fútbol
+            </p>
+            <a
+              href={GOOGLE_RATING.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-xs font-medium text-white/70 transition-colors hover:text-white"
+            >
+              <svg viewBox="0 0 20 20" fill="currentColor" className="h-3.5 w-3.5 text-[var(--color-lime)]">
+                <path d="M10 1.5l2.6 5.6 6.1.6-4.6 4.1 1.3 6-5.4-3.2-5.4 3.2 1.3-6-4.6-4.1 6.1-.6z" />
+              </svg>
+              {GOOGLE_RATING.value} en Google
+            </a>
+          </div>
           <h1 className="mt-5 max-w-2xl font-display text-[13vw] font-medium leading-[0.92] tracking-tight text-white sm:text-6xl lg:text-[6.5rem]">
             Canchas de nivel profesional.
           </h1>

@@ -46,7 +46,7 @@ export default function ProjectsMap() {
       LOCATIONS.forEach((loc) => {
         L.marker(loc.coordinates, { icon: depotIcon })
           .addTo(map)
-          .bindPopup(`<strong>${loc.label}</strong><br/>${loc.city}, ${loc.province}`);
+          .bindPopup(`<strong>${loc.label}</strong><br/>${loc.address}`);
       });
 
       const projectIcon = L.icon({

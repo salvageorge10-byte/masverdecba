@@ -17,6 +17,7 @@ export default function LocationCards() {
           <div className="absolute bottom-0 left-0 p-6">
             <p className="text-xs uppercase tracking-wide text-white/60">{loc.province}</p>
             <p className="mt-1 font-display text-xl font-medium text-white">{loc.city}</p>
+            <p className="mt-1 text-xs text-white/60">{loc.address}</p>
           </div>
         </div>
       ))}
