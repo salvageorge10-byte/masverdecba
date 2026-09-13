@@ -11,6 +11,6 @@ const ProjectsMap = dynamic(() => import("./ProjectsMap"), {
   ),
 });
 
-export default function MapLoader() {
-  return <ProjectsMap />;
+export default function MapLoader({ dark = false }: { dark?: boolean }) {
+  return <ProjectsMap dark={dark} />;
 }

@@ -64,6 +64,28 @@ h4,
   transform: translateY(0);
 }
 
+/* Mapa oscuro: filtro CSS sobre las tiles gratuitas de OpenStreetMap (no
+   sobre los pines/popups, que viven en otro pane) para no depender de un
+   proveedor de tiles que pida API key. */
+.leaflet-dark .leaflet-tile-pane {
+  filter: invert(1) hue-rotate(180deg) brightness(0.95) contrast(0.9) saturate(0.6);
+}
+
+.leaflet-dark .leaflet-control-zoom a {
+  background: #14231d;
+  color: #e7f5df;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.leaflet-dark .leaflet-control-attribution {
+  background: rgba(11, 16, 14, 0.8);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.leaflet-dark .leaflet-control-attribution a {
+  color: rgba(255, 255, 255, 0.8);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

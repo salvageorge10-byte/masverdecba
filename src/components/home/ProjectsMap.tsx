@@ -14,7 +14,7 @@ const PIN_SVG = (color: string) =>
     </svg>
   `)}`;
 
-export default function ProjectsMap() {
+export default function ProjectsMap({ dark = false }: { dark?: boolean }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<LeafletMap | null>(null);
 
@@ -31,13 +31,16 @@ export default function ProjectsMap() {
         zoomControl: true,
       }).setView([-31.9, -63.5], 7);
 
+      // Tiles gratuitas de OpenStreetMap (sin API key). La variante oscura
+      // se logra con un filtro CSS sobre esas mismas tiles (ver globals.css,
+      // clase .leaflet-dark), no con un proveedor de pago.
       L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         maxZoom: 19,
       }).addTo(map);
 
       const depotIcon = L.icon({
-        iconUrl: PIN_SVG("#0e1210"),
+        iconUrl: PIN_SVG(dark ? "#b6d602" : "#0e1210"),
         iconSize: [28, 38],
         iconAnchor: [14, 38],
         popupAnchor: [0, -34],
@@ -75,5 +78,10 @@ export default function ProjectsMap() {
     };
   }, []);
 
-  return <div ref={containerRef} className="h-[420px] w-full sm:h-[480px]" />;
+  return (
+    <div
+      ref={containerRef}
+      className={`h-[420px] w-full sm:h-[480px] ${dark ? "leaflet-dark" : ""}`}
+    />
+  );
 }
