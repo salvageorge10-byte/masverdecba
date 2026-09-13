@@ -1,35 +1,59 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import CtaButton from "@/components/CtaButton";
 import { whatsapp } from "@/lib/whatsapp";
 
 export default function Hero() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [showVideo, setShowVideo] = useState(false);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    if (prefersReducedMotion || window.innerWidth < 640) return;
+    setShowVideo(true);
+  }, []);
+
   return (
-    <section className="relative flex min-h-[92vh] items-end overflow-hidden bg-[var(--color-carbon)] sm:min-h-screen">
+    <section className="relative flex min-h-[max(100svh,600px)] items-end overflow-hidden bg-[var(--color-carbon)] pt-28">
       <Image
         src="/images/hero/cancha-hero.jpg"
-        alt="Instalación de césped sintético en cancha de fútbol techada"
+        alt="Cancha de fútbol con césped sintético profesional instalado por Más Verde"
         fill
         priority
-        className="object-cover"
+        className={`object-cover transition-opacity duration-700 ${showVideo ? "opacity-0" : "opacity-100"}`}
         sizes="100vw"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-carbon)] via-[var(--color-carbon)]/50 to-[var(--color-carbon)]/10" />
-      <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-carbon)]/70 via-transparent to-transparent" />
+      {showVideo && (
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 h-full w-full object-cover"
+          poster="/images/hero/cancha-hero.jpg"
+        >
+          <source src="/videos/cesped-futbol.mp4" type="video/mp4" />
+        </video>
+      )}
 
-      <div className="relative w-full px-6 pb-16 pt-40 sm:pb-24 lg:px-10 lg:pb-28">
+      <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-carbon)] via-[var(--color-carbon)]/35 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-carbon)]/60 via-transparent to-transparent" />
+
+      <div className="relative w-full px-6 pb-10 lg:px-10 lg:pb-14">
         <div className="mx-auto max-w-[1440px]">
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[var(--color-lime)]">
-            Césped sintético deportivo · Instalación de canchas
+            Especialistas en césped sintético para fútbol
           </p>
-          <h1 className="mt-5 max-w-3xl font-display text-5xl font-medium leading-[0.98] tracking-tight text-white sm:text-7xl">
-            Canchas de nivel profesional, instaladas de punta a punta.
+          <h1 className="mt-5 max-w-2xl font-display text-[13vw] font-medium leading-[0.92] tracking-tight text-white sm:text-6xl lg:text-[6.5rem]">
+            Canchas de nivel profesional.
           </h1>
-          <p className="mt-6 max-w-xl text-[15px] leading-relaxed text-white/75 sm:text-base">
-            Elegimos el césped, preparamos la base e instalamos la cancha. Más de
-            una década trabajando con césped sintético deportivo en Córdoba.
-          </p>
 
-          <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+          <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-5">
             <CtaButton
               href={whatsapp.quoteProject()}
               external
@@ -37,17 +61,20 @@ export default function Hero() {
             >
               Cotizar mi cancha
             </CtaButton>
-            <CtaButton href="/cesped-deportivo" variant="outline-light">
+            <a
+              href="/cesped-deportivo"
+              className="group inline-flex items-center gap-2 text-[13px] font-medium uppercase tracking-[0.08em] text-white/80 transition-colors hover:text-white"
+            >
               Ver césped deportivo
-            </CtaButton>
+              <span className="transition-transform group-hover:translate-x-1">→</span>
+            </a>
           </div>
+        </div>
 
-          <div className="mt-14 flex flex-wrap gap-x-8 gap-y-3 border-t border-white/15 pt-6 text-xs uppercase tracking-wide text-white/50">
-            <span>50mm de fibra</span>
-            <span>Monofilamento de alta resistencia</span>
-            <span>Uso deportivo profesional</span>
-            <span>5 años de garantía</span>
-          </div>
+        <div className="mx-auto mt-10 flex max-w-[1440px] flex-wrap gap-x-8 gap-y-2 border-t border-white/15 pt-5 text-[11px] uppercase tracking-wide text-white/45">
+          <span>Instalación con equipo propio</span>
+          <span>50mm de fibra</span>
+          <span>5 años de garantía</span>
         </div>
       </div>
     </section>
