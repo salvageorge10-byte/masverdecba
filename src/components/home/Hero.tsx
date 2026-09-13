@@ -19,7 +19,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative flex min-h-[max(100svh,600px)] items-end overflow-hidden bg-[var(--color-carbon)] pt-28">
+    <section className="relative flex min-h-[max(100svh,600px)] items-end overflow-hidden bg-[var(--color-carbon)] pt-28 xl:pt-36">
       <Image
         src="/images/hero/cancha-hero.jpg"
         alt="Cancha de fútbol con césped sintético profesional instalado por Más Verde"

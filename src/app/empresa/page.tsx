@@ -9,7 +9,7 @@ export const metadata = {
 export default function EmpresaPage() {
   return (
     <main>
-      <section className="relative flex min-h-[70vh] items-end overflow-hidden bg-[var(--color-carbon)] pb-20 pt-40">
+      <section className="relative flex min-h-[70vh] items-end overflow-hidden bg-[var(--color-carbon)] pb-20 pt-40 xl:pt-48">
         <video autoPlay loop muted playsInline className="absolute inset-0 h-full w-full object-cover opacity-60">
           <source src="/videos/empresa.mp4" type="video/mp4" />
         </video>

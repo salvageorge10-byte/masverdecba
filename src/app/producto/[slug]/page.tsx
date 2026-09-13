@@ -54,7 +54,7 @@ export default async function ProductPage({ params }: PageProps<"/producto/[slug
   };
 
   return (
-    <main className="pt-24">
+    <main className="pt-24 xl:pt-32">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

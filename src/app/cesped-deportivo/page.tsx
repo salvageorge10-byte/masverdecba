@@ -32,7 +32,7 @@ export default function CespedDeportivoPage() {
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-carbon)] via-[var(--color-carbon)]/50 to-transparent" />
-        <div className="relative mx-auto max-w-[1440px] px-6 pb-20 pt-40 lg:px-10">
+        <div className="relative mx-auto max-w-[1440px] px-6 pb-20 pt-40 lg:px-10 xl:pt-48">
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[var(--color-lime)]">
             Césped deportivo
           </p>

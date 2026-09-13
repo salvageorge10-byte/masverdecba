@@ -15,7 +15,7 @@ export default function CespedDecorativoPage() {
   const products = getProductsByCategory("cesped-decorativo");
 
   return (
-    <main className="pt-24">
+    <main className="pt-24 xl:pt-32">
       <section className="mx-auto max-w-[1440px] px-6 py-16 lg:px-10">
         <p className="text-sm text-[var(--color-ink-soft)]">
           <Link href="/" className="hover:underline">

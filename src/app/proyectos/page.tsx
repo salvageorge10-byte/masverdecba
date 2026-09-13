@@ -20,7 +20,7 @@ export default function ProyectosPage() {
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-carbon)] via-[var(--color-carbon)]/60 to-transparent" />
-        <div className="relative mx-auto max-w-[1440px] px-6 pb-16 pt-32 lg:px-10">
+        <div className="relative mx-auto max-w-[1440px] px-6 pb-16 pt-32 lg:px-10 xl:pt-40">
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[var(--color-lime)]">
             Proyectos
           </p>

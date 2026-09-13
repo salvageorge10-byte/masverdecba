@@ -16,7 +16,7 @@ const SORTED_PRODUCTS = [...PRODUCTS].sort(
 
 export default function ProductosPage() {
   return (
-    <main className="pt-24">
+    <main className="pt-24 xl:pt-32">
       <div className="bg-[var(--color-paper)]">
         <div className="mx-auto max-w-[1440px] px-6 py-16 lg:px-10">
           <p className="text-sm text-[var(--color-ink-soft)]">
