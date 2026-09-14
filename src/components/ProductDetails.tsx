@@ -42,7 +42,7 @@ export default function ProductDetails({ product }: { product: Product }) {
 
       <dl className="mt-8 grid grid-cols-1 gap-px overflow-hidden bg-[var(--color-line)] sm:grid-cols-2">
         {product.specs.map((spec) => (
-          <div key={spec.label} className="bg-white p-4">
+          <div key={spec.label} className="bg-white/5 p-4">
             <dt className="text-xs uppercase tracking-wide text-[var(--color-ink-soft)]">
               {spec.label}
             </dt>

@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
@@ -54,9 +53,6 @@ const CAROUSEL_PHOTOS = [
 ];
 
 export default function ProjectsSection({ showLink = true }: { showLink?: boolean }) {
-  const [offset, setOffset] = useState(0);
-  const visible = Array.from({ length: 4 }, (_, i) => CAROUSEL_PHOTOS[(offset + i) % CAROUSEL_PHOTOS.length]);
-
   return (
     <section className="bg-[var(--color-carbon)] py-24 sm:py-32">
       <div className="mx-auto max-w-[1440px] px-6 lg:px-10">
@@ -119,81 +115,74 @@ export default function ProjectsSection({ showLink = true }: { showLink?: boolea
           </Reveal>
         </div>
 
-        {/* Franja de 3 columnas */}
-        <Reveal delay={150} className="mt-6 grid gap-px overflow-hidden bg-white/10 lg:grid-cols-3">
-          <div className="bg-[#0b100e] p-8">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-lime)]">
-              Proyectos reales
-            </p>
-            <h3 className="mt-3 text-xl font-medium text-white">Nuestro trabajo, de cerca.</h3>
-
-            <div className="mt-6 grid grid-cols-4 gap-2">
-              {visible.map((photo) => (
-                <div key={photo.src} className="relative aspect-square overflow-hidden">
-                  <Image src={photo.src} alt={photo.alt} fill className="object-cover" sizes="80px" />
+        {/* Ubicaciones + mapa */}
+        <Reveal delay={150} className="mt-6 grid gap-4 lg:grid-cols-[1fr_1.3fr]">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+            {LOCATIONS.map((loc, i) => (
+              <div key={loc.id} className="group overflow-hidden border border-white/10 bg-[#0b100e]">
+                <div className="relative aspect-[16/9] overflow-hidden">
+                  <Image
+                    src={loc.image}
+                    alt={`Depósito Más Verde en ${loc.city}`}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    sizes="(min-width: 1024px) 22vw, 90vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0b100e] via-[#0b100e]/10 to-transparent" />
                 </div>
-              ))}
-            </div>
-
-            <div className="mt-6 flex items-center justify-between">
-              <Link
-                href="/proyectos"
-                className="text-sm font-medium text-white/80 underline decoration-white/30 underline-offset-4 hover:text-white"
-              >
-                Ver galería →
-              </Link>
-              <div className="flex gap-2">
-                <button
-                  type="button"
-                  onClick={() => setOffset((o) => (o - 1 + CAROUSEL_PHOTOS.length) % CAROUSEL_PHOTOS.length)}
-                  aria-label="Fotos anteriores"
-                  className="flex h-8 w-8 items-center justify-center border border-white/20 text-white/70 transition-colors hover:border-white/50 hover:text-white"
-                >
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className="h-4 w-4">
-                    <path d="M15 6l-6 6 6 6" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setOffset((o) => (o + 1) % CAROUSEL_PHOTOS.length)}
-                  aria-label="Fotos siguientes"
-                  className="flex h-8 w-8 items-center justify-center border border-white/20 text-white/70 transition-colors hover:border-white/50 hover:text-white"
-                >
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className="h-4 w-4">
-                    <path d="M9 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </button>
+                <div className="p-6">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--color-lime)]">
+                    {i === 0 ? "Base principal" : "Segunda base"}
+                  </p>
+                  <h3 className="mt-2 text-xl font-medium text-white">{loc.city}</h3>
+                  <p className="mt-1 text-sm text-white/55">{loc.address}</p>
+                  <a
+                    href={`https://www.google.com/maps/dir/?api=1&destination=${loc.coordinates[0]},${loc.coordinates[1]}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 inline-flex items-center gap-1.5 text-[13px] font-medium text-white/80 underline decoration-white/30 underline-offset-4 transition-colors hover:text-[var(--color-lime)]"
+                  >
+                    Cómo llegar
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-3.5 w-3.5">
+                      <path d="M7 17 17 7M9 7h8v8" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </a>
+                </div>
               </div>
-            </div>
+            ))}
           </div>
 
-          <div className="min-h-[320px] bg-[#0b100e] lg:min-h-0">
+          <div className="min-h-[360px] overflow-hidden border border-white/10 bg-[#0b100e] lg:min-h-[520px]">
             <MapLoader dark />
           </div>
+        </Reveal>
 
-          <div className="bg-[#0b100e] p-8">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-lime)]">
-              En Córdoba
-            </p>
-            <h3 className="mt-3 text-xl font-medium text-white">Dos bases, un mismo equipo.</h3>
-            <p className="mt-3 text-[14px] leading-relaxed text-white/60">
-              Contamos con depósitos en Córdoba Capital y Bell Ville, lo que nos
-              permite coordinar stock y logística para acompañar cada proyecto,
-              deportivo o decorativo.
-            </p>
-
-            <div className="mt-6 space-y-3 border-t border-white/10 pt-6">
-              {LOCATIONS.map((loc) => (
-                <div key={loc.id} className="flex items-start gap-3">
-                  <span className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[var(--color-lime)]" />
-                  <div>
-                    <p className="text-sm font-medium text-white">{loc.city}</p>
-                    <p className="text-xs text-white/50">{loc.address}</p>
-                  </div>
+        {/* Franja de proyectos reales */}
+        <Reveal delay={200} className="mt-6 flex flex-col gap-6 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-center gap-4">
+            <div className="flex -space-x-3">
+              {CAROUSEL_PHOTOS.slice(0, 4).map((photo) => (
+                <div
+                  key={photo.src}
+                  className="relative h-14 w-14 overflow-hidden border-2 border-[var(--color-carbon)] sm:h-16 sm:w-16"
+                >
+                  <Image src={photo.src} alt={photo.alt} fill className="object-cover" sizes="64px" />
                 </div>
               ))}
             </div>
+            <div>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--color-lime)]">
+                Proyectos reales
+              </p>
+              <h3 className="mt-1 text-lg font-medium text-white">Nuestro trabajo, de cerca.</h3>
+            </div>
           </div>
+          <Link
+            href="/proyectos"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-white/80 underline decoration-white/30 underline-offset-4 hover:text-white"
+          >
+            Ver galería de proyectos →
+          </Link>
         </Reveal>
 
         {/* Frase de marca */}

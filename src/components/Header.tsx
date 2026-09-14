@@ -67,7 +67,7 @@ function SearchBox({ light }: { light: boolean }) {
       </button>
 
       {open && (
-        <div className="absolute right-0 top-full mt-3 w-80 border border-[var(--color-line)] bg-white p-3 shadow-lg">
+        <div className="absolute right-0 top-full mt-3 w-80 border border-[var(--color-line)] bg-[var(--color-carbon)] p-3 shadow-lg">
           <input
             autoFocus
             type="text"
@@ -180,13 +180,13 @@ export default function Header() {
 
       <header
         className={`fixed inset-x-0 top-0 z-40 transition-all duration-300 xl:top-9 ${
-          light ? "bg-transparent py-6" : "border-b border-black/5 bg-white/95 py-4 backdrop-blur-sm"
+          light ? "bg-transparent py-6" : "border-b border-white/10 bg-[var(--color-carbon)]/95 py-4 backdrop-blur-sm"
         }`}
       >
         <div className="mx-auto flex max-w-[1440px] items-center justify-between px-6 lg:px-10">
           <Link href="/" className="flex items-center gap-2.5" aria-label="Más Verde — inicio">
             <Image
-              src={light ? "/images/brand/logo-white.svg" : "/images/brand/logo.svg"}
+              src="/images/brand/logo-white.svg"
               alt="Más Verde"
               width={150}
               height={36}
@@ -224,9 +224,7 @@ export default function Header() {
               type="button"
               onClick={() => setMenuOpen(true)}
               aria-label="Abrir menú"
-              className={`flex h-9 w-9 items-center justify-center xl:hidden ${
-                light ? "text-white" : "text-[var(--color-carbon)]"
-              }`}
+              className="flex h-9 w-9 items-center justify-center text-white xl:hidden"
             >
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className="h-6 w-6">
                 <path d="M4 7h16M4 12h16M4 17h16" strokeLinecap="round" />

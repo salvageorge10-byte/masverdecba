@@ -15,7 +15,7 @@ export default function CatalogPreview() {
   ];
 
   return (
-    <section className="bg-white py-24 sm:py-32">
+    <section className="bg-[var(--color-paper)] py-24 sm:py-32">
       <div className="mx-auto max-w-[1440px] px-6 lg:px-10">
         <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
           <SectionHeading

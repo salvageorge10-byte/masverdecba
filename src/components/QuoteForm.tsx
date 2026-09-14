@@ -74,7 +74,7 @@ export default function QuoteForm() {
           id="q-tipo"
           name="tipoProyecto"
           required
-          className="mt-2 w-full border border-[var(--color-line)] bg-white px-4 py-3 text-sm outline-none focus:border-[var(--color-grass)]"
+          className="mt-2 w-full border border-[var(--color-line)] bg-white/5 px-4 py-3 text-sm text-[var(--color-ink)] outline-none focus:border-[var(--color-grass)]"
         >
           <option value="Cancha nueva">Cancha nueva</option>
           <option value="Renovación de cancha">Renovación de cancha</option>
@@ -110,7 +110,7 @@ export default function QuoteForm() {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="inline-flex items-center justify-center gap-2 bg-[var(--color-carbon)] px-7 py-3.5 text-[13px] font-semibold uppercase tracking-[0.08em] text-white transition-colors hover:bg-[var(--color-forest)] disabled:opacity-60"
+        className="inline-flex w-full items-center justify-center gap-2 bg-[var(--color-grass)] px-7 py-3.5 text-[13px] font-semibold uppercase tracking-[0.08em] text-white transition-colors hover:bg-[var(--color-forest)] disabled:opacity-60"
       >
         {status === "submitting" ? "Enviando…" : "Solicitar cotización por WhatsApp"}
       </button>

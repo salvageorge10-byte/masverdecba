@@ -10,7 +10,7 @@ export default function FootballShowcase() {
   if (!product) return null;
 
   return (
-    <section className="bg-white py-24 sm:py-32">
+    <section className="bg-[var(--color-paper)] py-24 sm:py-32">
       <div className="mx-auto max-w-[1440px] px-6 lg:px-10">
         <SectionHeading
           eyebrow="Nuestro producto deportivo"
@@ -33,7 +33,7 @@ export default function FootballShowcase() {
         <div className="grid gap-10 border-t border-[var(--color-line)] pt-10 sm:grid-cols-3 sm:gap-6">
           <Reveal className="grid grid-cols-2 gap-px bg-[var(--color-line)] sm:grid-cols-1">
             {product.specs.slice(0, 4).map((spec) => (
-              <div key={spec.label} className="bg-white p-5 pl-0 sm:pl-5">
+              <div key={spec.label} className="bg-white/5 p-5 pl-0 sm:pl-5">
                 <p className="text-xs uppercase tracking-wide text-[var(--color-ink-soft)]">
                   {spec.label}
                 </p>

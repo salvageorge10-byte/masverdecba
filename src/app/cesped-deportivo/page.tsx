@@ -85,7 +85,7 @@ export default function CespedDeportivoPage() {
 
                 <div className="mt-8 grid grid-cols-2 gap-px bg-[var(--color-line)]">
                   {product.specs.map((s) => (
-                    <div key={s.label} className="bg-white p-4">
+                    <div key={s.label} className="bg-white/5 p-4">
                       <p className="text-[11px] uppercase tracking-wide text-[var(--color-ink-soft)]">{s.label}</p>
                       <p className="mt-1 text-sm font-medium text-[var(--color-ink)]">{s.value}</p>
                     </div>
@@ -142,7 +142,7 @@ export default function CespedDeportivoPage() {
             title="Contanos sobre tu proyecto deportivo."
             description="Cancha nueva, renovación o un espacio de entrenamiento: dejanos tus datos y te respondemos con una cotización a medida."
           />
-          <div className="bg-white p-8">
+          <div className="border border-[var(--color-line)] bg-white/5 p-8">
             <QuoteForm />
           </div>
         </div>

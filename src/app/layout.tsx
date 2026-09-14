@@ -60,7 +60,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
 
   return (
     <html lang="es" className={`${inter.variable} ${spaceGrotesk.variable} antialiased`}>
-      <body className="flex min-h-screen flex-col overflow-x-hidden bg-white text-[var(--color-ink)]">
+      <body className="flex min-h-screen flex-col overflow-x-hidden bg-[var(--color-paper)] text-[var(--color-ink)]">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
