@@ -21,11 +21,6 @@ export const CATEGORIES: Record<string, ProductCategory> = {
     name: "Jardín Vertical",
     priority: 3,
   },
-  mobiliario: {
-    slug: "mobiliario",
-    name: "Mobiliario",
-    priority: 4,
-  },
 };
 
 export const CATEGORY_LIST = Object.values(CATEGORIES).sort(

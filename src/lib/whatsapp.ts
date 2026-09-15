@@ -1,4 +1,6 @@
 import { COMPANY } from "@/data/company";
+import { CartItem } from "@/types/cart";
+import { formatPrice } from "@/data/products";
 
 function buildUrl(message: string) {
   return `https://api.whatsapp.com/send?phone=${COMPANY.phoneWhatsapp}&text=${encodeURIComponent(
@@ -58,5 +60,19 @@ export const whatsapp = {
   /** Consulta sobre disponibilidad de un producto/servicio. */
   availability(itemName: string): string {
     return buildUrl(`Hola, quería consultar disponibilidad de *${itemName}*.`);
+  },
+
+  /** Pedido armado desde el carrito de productos decorativos. */
+  cartOrder(items: CartItem[]): string {
+    const lines = [`Hola *${COMPANY.name}*, quiero hacer este pedido:`, ""];
+    let total = 0;
+    items.forEach((item) => {
+      const subtotal = item.price * item.quantity;
+      total += subtotal;
+      const unit = item.priceUnit?.includes("m2") ? " m²" : "";
+      lines.push(`• ${item.name} — ${item.quantity}${unit} — ${formatPrice(subtotal)}`);
+    });
+    lines.push("", `Total: ${formatPrice(total)}`);
+    return buildUrl(lines.join("\n"));
   },
 };

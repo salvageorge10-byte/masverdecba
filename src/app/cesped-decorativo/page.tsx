@@ -2,8 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import SectionHeading from "@/components/SectionHeading";
 import CtaButton from "@/components/CtaButton";
+import AddToCartButton from "@/components/cart/AddToCartButton";
 import { getProductsByCategory, formatPrice } from "@/data/products";
-import { whatsapp } from "@/lib/whatsapp";
 
 export const metadata = {
   title: "Césped Sintético Decorativo",
@@ -62,9 +62,10 @@ export default function CespedDecorativoPage() {
                 <CtaButton href={`/producto/${product.slug}`} variant="solid">
                   Ver ficha completa
                 </CtaButton>
-                <CtaButton href={whatsapp.product(product.name)} external variant="outline">
-                  Consultar
-                </CtaButton>
+                <AddToCartButton
+                  product={product}
+                  className="inline-flex items-center justify-center gap-2 border border-[var(--color-carbon)] px-7 py-3.5 text-[13px] font-semibold uppercase tracking-[0.08em] text-[var(--color-carbon)] transition-colors hover:bg-[var(--color-carbon)] hover:text-white"
+                />
               </div>
             </div>
           </div>

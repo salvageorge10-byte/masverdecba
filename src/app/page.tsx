@@ -2,7 +2,7 @@ import Hero from "@/components/home/Hero";
 import WorkGallery from "@/components/home/WorkGallery";
 import HowWeWork from "@/components/home/HowWeWork";
 import TrustStrip from "@/components/TrustStrip";
-import ProjectsSection from "@/components/home/ProjectsSection";
+import CoverageSection from "@/components/home/CoverageSection";
 import GoogleReviewsSection from "@/components/home/GoogleReviewsSection";
 import FootballShowcase from "@/components/home/FootballShowcase";
 import CatalogPreview from "@/components/home/CatalogPreview";
@@ -13,13 +13,13 @@ export default function Home() {
   return (
     <main>
       <Hero />
+      <CatalogPreview />
       <WorkGallery />
       <HowWeWork />
       <TrustStrip />
-      <ProjectsSection />
+      <CoverageSection />
       <GoogleReviewsSection />
       <FootballShowcase />
-      <CatalogPreview />
       <FaqSection />
       <FinalCta />
     </main>

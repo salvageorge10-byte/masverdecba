@@ -86,6 +86,43 @@ h4,
   color: rgba(255, 255, 255, 0.8);
 }
 
+/* Popups del mapa de "Nuestra cobertura" en el home (CoverageMap): foto
+   real + dato + ubicación. Clase propia, no comparte estilos con el resto
+   de los mapas del sitio. */
+.mv-coverage-popup {
+  font-family: var(--font-inter), sans-serif;
+}
+
+.mv-coverage-popup img {
+  display: block;
+  width: 100%;
+  height: 90px;
+  object-fit: cover;
+  margin-bottom: 8px;
+}
+
+.mv-coverage-popup .mv-coverage-popup-tag {
+  margin: 0 0 2px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #0a7d2c;
+}
+
+.mv-coverage-popup strong {
+  display: block;
+  font-size: 13px;
+  color: #14231d;
+}
+
+.mv-coverage-popup span {
+  display: block;
+  margin-top: 2px;
+  font-size: 12px;
+  color: #5b645e;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

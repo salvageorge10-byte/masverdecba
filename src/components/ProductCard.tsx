@@ -11,9 +11,7 @@ export default function ProductCard({ product }: { product: Product }) {
           src={product.images[0]}
           alt={product.name}
           fill
-          className={`transition-transform duration-500 group-hover:scale-105 ${
-            product.category.slug === "mobiliario" ? "object-contain p-6" : "object-cover"
-          }`}
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
           sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
         />
       </div>

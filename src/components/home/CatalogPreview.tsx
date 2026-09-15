@@ -11,7 +11,6 @@ export default function CatalogPreview() {
   const secundarios = [
     ...getProductsByCategory("cesped-decorativo"),
     ...getProductsByCategory("jardin-vertical"),
-    ...getProductsByCategory("mobiliario"),
   ];
 
   return (
@@ -28,24 +27,24 @@ export default function CatalogPreview() {
           </CtaButton>
         </div>
 
-        <div className="mt-14 grid gap-6 sm:grid-cols-3">
+        <div className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6">
           {deportivo.map((product, i) => (
             <Reveal key={product.slug} delay={i * 80}>
               <Link href={`/producto/${product.slug}`} className="group block">
-                <div className="relative aspect-[4/5] overflow-hidden bg-[var(--color-paper)]">
+                <div className="relative aspect-square overflow-hidden bg-[var(--color-paper)] sm:aspect-[4/5]">
                   <Image
                     src={product.images[0]}
                     alt={product.name}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    sizes="(min-width: 640px) 33vw, 100vw"
+                    sizes="(min-width: 640px) 33vw, 50vw"
                   />
                 </div>
-                <div className="mt-4 flex items-baseline justify-between">
-                  <p className="text-[15px] font-medium text-[var(--color-ink)]">{product.name}</p>
+                <div className="mt-3 flex items-baseline justify-between sm:mt-4">
+                  <p className="text-[13px] font-medium text-[var(--color-ink)] sm:text-[15px]">{product.name}</p>
                 </div>
                 {product.price && (
-                  <p className="mt-1 text-sm text-[var(--color-ink-soft)]">{formatPrice(product.price)}</p>
+                  <p className="mt-1 text-xs text-[var(--color-ink-soft)] sm:text-sm">{formatPrice(product.price)}</p>
                 )}
               </Link>
             </Reveal>
@@ -76,9 +75,7 @@ export default function CatalogPreview() {
                       src={product.images[0]}
                       alt={product.name}
                       fill
-                      className={`transition-transform duration-500 group-hover:scale-105 ${
-                        product.category.slug === "mobiliario" ? "object-contain p-6" : "object-cover"
-                      }`}
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
                       sizes="(min-width: 640px) 25vw, 50vw"
                     />
                   </div>

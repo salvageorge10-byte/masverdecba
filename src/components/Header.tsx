@@ -6,6 +6,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import DesktopNav from "@/components/DesktopNav";
 import MobileMenu from "@/components/MobileMenu";
+import MegaMenu from "@/components/MegaMenu";
+import CartButton from "@/components/cart/CartButton";
 import { whatsapp } from "@/lib/whatsapp";
 import { COMPANY, LOCATIONS } from "@/data/company";
 import { PRODUCTS } from "@/data/products";
@@ -108,6 +110,22 @@ export default function Header() {
   const overlay = OVERLAY_ROUTES.has(pathname);
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [megaMenuOpen, setMegaMenuOpen] = useState(false);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const openMegaMenu = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setMegaMenuOpen(true);
+  };
+  const scheduleCloseMegaMenu = () => {
+    closeTimer.current = setTimeout(() => setMegaMenuOpen(false), 150);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (closeTimer.current) clearTimeout(closeTimer.current);
+    };
+  }, []);
 
   useEffect(() => {
     if (!overlay) {
@@ -204,12 +222,13 @@ export default function Header() {
             </span>
           </Link>
 
-          <DesktopNav light={light} />
+          <DesktopNav light={light} onProductsEnter={openMegaMenu} onProductsLeave={scheduleCloseMegaMenu} />
 
           <div className="flex items-center gap-4">
             <div className="hidden xl:block">
               <SearchBox light={light} />
             </div>
+            <CartButton light={light} />
             <a
               href={whatsapp.quoteProject()}
               target="_blank"
@@ -232,6 +251,13 @@ export default function Header() {
             </button>
           </div>
         </div>
+
+        <MegaMenu
+          open={megaMenuOpen}
+          onClose={() => setMegaMenuOpen(false)}
+          onMouseEnter={openMegaMenu}
+          onMouseLeave={scheduleCloseMegaMenu}
+        />
       </header>
 
       <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} />

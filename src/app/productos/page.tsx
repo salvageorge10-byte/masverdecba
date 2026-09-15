@@ -6,7 +6,7 @@ import TrustStrip from "@/components/TrustStrip";
 export const metadata = {
   title: "Productos",
   description:
-    "Catálogo de césped sintético deportivo y decorativo, jardines verticales y mobiliario de Más Verde.",
+    "Catálogo de césped sintético deportivo y decorativo y jardines verticales de Más Verde.",
 };
 
 // Ordenado por prioridad de categoría (deportivo primero), luego por nombre.
@@ -30,7 +30,7 @@ export default function ProductosPage() {
             Catálogo
           </h1>
           <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-[var(--color-ink-soft)]">
-            Césped deportivo, césped decorativo, jardines verticales y mobiliario.
+            Césped deportivo, césped decorativo y jardines verticales.
             Todos los precios son por m² y pueden variar según superficie y obra.
           </p>
         </div>

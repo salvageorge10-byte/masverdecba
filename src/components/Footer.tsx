@@ -6,7 +6,6 @@ const CATALOG_LINKS = [
   { label: "Césped deportivo", href: "/cesped-deportivo" },
   { label: "Césped decorativo", href: "/cesped-decorativo" },
   { label: "Jardines verticales", href: "/productos?categoria=jardin-vertical" },
-  { label: "Mobiliario", href: "/productos?categoria=mobiliario" },
 ];
 
 const COMPANY_LINKS = [

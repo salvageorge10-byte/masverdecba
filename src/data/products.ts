@@ -188,57 +188,6 @@ export const PRODUCTS: Product[] = [
       "/images/productos/jardin-interior/interior-3.jpg",
     ],
   },
-  {
-    id: "sillas-tolix-blanca",
-    slug: "sillas-tolix-blanca",
-    name: "Sillas Tólix Blanca",
-    active: true,
-    price: 45000,
-    currency: "ARS",
-    category: CATEGORIES.mobiliario,
-    specs: [
-      { label: "Medidas", value: "85 cm de alto, 45 cm de ancho, 45 cm de profundidad." },
-      { label: "Material", value: "Acero reforzado con pintura electrostática" },
-      { label: "Color", value: "Blanco brillante" },
-      { label: "Diseño", value: "Estilo vintage-industrial, con patas antideslizantes" },
-      { label: "Capacidad de carga", value: "Hasta 150kg" },
-    ],
-    extraLines: [
-      "Apta para uso en interiores y exteriores.",
-      "Protección contra óxido y rayaduras.",
-    ],
-    description:
-      "Luz y elegancia en tu mobiliario. La silla Tólix blanca aporta un toque fresco y sofisticado a cualquier espacio. Perfecta para interiores modernos, su estructura robusta la convierte en una pieza atemporal.",
-    images: [
-      "/images/productos/tolix-blanca/blanca-1.jpg",
-      "/images/productos/tolix-blanca/blanca-2.jpg",
-      "/images/productos/tolix-blanca/blanca-3.jpg",
-    ],
-  },
-  {
-    id: "sillas-tolix-negra",
-    slug: "sillas-tolix-negra",
-    name: "Sillas Tólix Negra",
-    active: true,
-    price: 45000,
-    currency: "ARS",
-    category: CATEGORIES.mobiliario,
-    specs: [
-      { label: "Medidas", value: "85 cm de alto, 45 cm de ancho, 45 cm de profundidad." },
-      { label: "Material", value: "Acero reforzado con pintura electrostática" },
-      { label: "Color", value: "Negro mate" },
-      { label: "Diseño", value: "Industrial, con respaldo ergonómico y apilable" },
-      { label: "Capacidad de carga", value: "Hasta 150kg" },
-    ],
-    description:
-      "Estilo y resistencia en cada detalle. La silla Tólix negra es un ícono del diseño industrial, ideal para bares, restaurantes y hogares modernos. Su estructura reforzada garantiza durabilidad sin perder elegancia.",
-    images: [
-      "/images/productos/tolix-negra/negra-1.jpg",
-      "/images/productos/tolix-negra/negra-2.jpg",
-      "/images/productos/tolix-negra/negra-3.jpg",
-      "/images/productos/tolix-negra/negra-4.jpg",
-    ],
-  },
 ];
 
 export function getProductBySlug(slug: string): Product | undefined {

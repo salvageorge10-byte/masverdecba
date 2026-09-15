@@ -2,14 +2,14 @@
 // directamente: todo pasa por acá para poder cambiar de proveedor o agregar
 // deduplicación sin tocar el resto del código.
 //
-// Eventos habilitados en esta etapa (sin e-commerce funcional):
-//   PageView, ViewContent, Contact, Lead
-// Eventos reservados para cuando exista checkout real:
-//   AddToCart, InitiateCheckout, Purchase (NO usar todavía)
+// Eventos habilitados:
+//   PageView, ViewContent, Contact, Lead, AddToCart, InitiateCheckout
+// (el "checkout" es el pedido armado por WhatsApp desde el carrito de
+// productos decorativos — no hay pago online, por eso no hay evento Purchase)
 
 export const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID;
 
-type StandardEvent = "PageView" | "ViewContent" | "Contact" | "Lead";
+type StandardEvent = "PageView" | "ViewContent" | "Contact" | "Lead" | "AddToCart" | "InitiateCheckout";
 
 declare global {
   interface Window {
@@ -44,5 +44,15 @@ export const metaPixel = {
   /** Solicitud de presupuesto / cotización — el evento de mayor valor hoy. */
   lead(params?: { content_name?: string; value?: number; currency?: string }) {
     track("Lead", params);
+  },
+
+  /** Agregado de un producto decorativo al carrito. */
+  addToCart(params: { content_name: string; value?: number; currency?: string }) {
+    track("AddToCart", params);
+  },
+
+  /** Envío del pedido armado desde el carrito por WhatsApp. */
+  initiateCheckout(params: { value: number; currency: string; num_items: number }) {
+    track("InitiateCheckout", params);
   },
 };

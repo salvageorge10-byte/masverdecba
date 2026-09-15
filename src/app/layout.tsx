@@ -6,6 +6,8 @@ import Header from "@/components/Header";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import MetaPixel from "@/components/analytics/MetaPixel";
 import { COMPANY, LOCATIONS } from "@/data/company";
+import { CartProvider } from "@/lib/cart-context";
+import CartDrawer from "@/components/cart/CartDrawer";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -66,10 +68,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <MetaPixel />
-        <Header />
-        <div className="flex-1">{children}</div>
-        <Footer />
-        <WhatsAppButton />
+        <CartProvider>
+          <Header />
+          <div className="flex-1">{children}</div>
+          <Footer />
+          <WhatsAppButton />
+          <CartDrawer />
+        </CartProvider>
       </body>
     </html>
   );

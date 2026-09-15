@@ -19,7 +19,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative flex min-h-[max(100svh,600px)] items-end overflow-hidden bg-[var(--color-carbon)] pt-28 xl:pt-36">
+    <section className="relative flex min-h-[80svh] items-end overflow-hidden bg-[var(--color-carbon)] pt-28 sm:min-h-[max(100svh,600px)] xl:pt-36">
       <Image
         src="/images/hero/cancha-hero.jpg"
         alt="Cancha de fútbol con césped sintético profesional instalado por Más Verde"
@@ -85,7 +85,7 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="mx-auto mt-10 flex max-w-[1440px] flex-wrap gap-x-8 gap-y-2 border-t border-white/15 pt-5 text-[11px] uppercase tracking-wide text-white/45">
+        <div className="mx-auto mt-10 flex max-w-[1440px] flex-wrap gap-x-8 gap-y-2 border-t border-white/15 pt-5 pr-16 text-[11px] uppercase tracking-wide text-white/45 sm:pr-0">
           <span>Instalación con equipo propio</span>
           <span>50mm de fibra</span>
           <span>5 años de garantía</span>

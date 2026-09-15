@@ -4,7 +4,15 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { MAIN_NAV_LINKS } from "@/data/nav";
 
-export default function DesktopNav({ light }: { light: boolean }) {
+export default function DesktopNav({
+  light,
+  onProductsEnter,
+  onProductsLeave,
+}: {
+  light: boolean;
+  onProductsEnter?: () => void;
+  onProductsLeave?: () => void;
+}) {
   const pathname = usePathname();
   const linkColor = light ? "text-white/90 hover:text-white" : "text-[var(--color-ink)]/80 hover:text-[var(--color-ink)]";
 
@@ -12,10 +20,13 @@ export default function DesktopNav({ light }: { light: boolean }) {
     <nav className="hidden items-center gap-7 xl:flex">
       {MAIN_NAV_LINKS.map((link) => {
         const isActive = pathname === link.href;
+        const isProductos = link.href === "/productos";
         return (
           <Link
             key={link.href}
             href={link.href}
+            onMouseEnter={isProductos ? onProductsEnter : undefined}
+            onMouseLeave={isProductos ? onProductsLeave : undefined}
             className={`relative py-1 text-[13px] font-medium tracking-wide ${linkColor} ${
               isActive ? (light ? "text-white" : "text-[var(--color-ink)]") : ""
             }`}

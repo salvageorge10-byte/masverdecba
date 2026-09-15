@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { MAIN_NAV_LINKS } from "@/data/nav";
 import { COMPANY } from "@/data/company";
 import { whatsapp } from "@/lib/whatsapp";
+import { useCart } from "@/lib/cart-context";
 
 export default function MobileMenu({
   open,
@@ -15,6 +16,7 @@ export default function MobileMenu({
   onClose: () => void;
 }) {
   const pathname = usePathname();
+  const { totalItems, open: openCart } = useCart();
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -69,6 +71,16 @@ export default function MobileMenu({
         </nav>
 
         <div className="mt-auto flex flex-col gap-6">
+          <button
+            type="button"
+            onClick={() => {
+              onClose();
+              openCart();
+            }}
+            className="inline-flex items-center justify-center gap-2 border border-white/25 px-6 py-4 text-sm font-semibold uppercase tracking-wide text-white transition-colors hover:bg-white hover:text-[var(--color-carbon)]"
+          >
+            Ver carrito {totalItems > 0 && `(${totalItems})`}
+          </button>
           <a
             href={whatsapp.general()}
             target="_blank"
