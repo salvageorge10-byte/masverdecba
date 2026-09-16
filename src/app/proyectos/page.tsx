@@ -1,5 +1,5 @@
 import Image from "next/image";
-import WorkGallery from "@/components/home/WorkGallery";
+import RealProjectsGrid from "@/components/proyectos/RealProjectsGrid";
 import ProjectsSection from "@/components/home/ProjectsSection";
 
 export const metadata = {
@@ -30,7 +30,7 @@ export default function ProyectosPage() {
         </div>
       </section>
 
-      <WorkGallery />
+      <RealProjectsGrid />
       <ProjectsSection showLink={false} />
     </main>
   );

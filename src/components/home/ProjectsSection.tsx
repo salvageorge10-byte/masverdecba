@@ -39,19 +39,6 @@ const FEATURES = [
   },
 ];
 
-// Fotos reales (mismas que en el portfolio de WorkGallery): producto ya
-// usado en el catálogo + fotos verificadas de @masverde.cba.
-const CAROUSEL_PHOTOS = [
-  { src: "/images/hero/cancha-hero.jpg", alt: "Cancha de fútbol con césped sintético" },
-  { src: "/images/productos/cesped-futbol/futbol-2.jpg", alt: "Detalle de fibra de césped sintético" },
-  { src: "/images/proyectos/deposito-rollos.jpg", alt: "Rollos de césped en el depósito" },
-  { src: "/images/productos/cesped-futbol/futbol-4.jpg", alt: "Césped sintético de alta densidad" },
-  { src: "/images/proyectos/gimnasio-piso-cesped.jpg", alt: "Gimnasio con piso de césped sintético" },
-  { src: "/images/productos/cesped-futbol/futbol-6.jpg", alt: "Terminación de obra en césped sintético" },
-  { src: "/images/proyectos/patio-transformacion.jpg", alt: "Patio residencial con césped sintético" },
-  { src: "/images/proyectos/jardin-infantes.jpg", alt: "Jardín de infantes con césped sintético" },
-];
-
 export default function ProjectsSection({ showLink = true }: { showLink?: boolean }) {
   return (
     <section className="bg-[var(--color-carbon)] py-24 sm:py-32">
@@ -97,8 +84,8 @@ export default function ProjectsSection({ showLink = true }: { showLink?: boolea
 
           <Reveal delay={100} className="relative aspect-[4/3] w-full overflow-hidden lg:aspect-auto lg:h-[480px]">
             <Image
-              src="/images/hero/cancha-hero.jpg"
-              alt="Instalación de césped sintético en cancha de fútbol, Córdoba"
+              src="/images/productos/cesped-futbol/futbol-3.jpg"
+              alt="Detalle de instalación de césped sintético para cancha de fútbol"
               fill
               className="object-cover"
               sizes="(min-width: 1024px) 45vw, 100vw"
@@ -155,34 +142,6 @@ export default function ProjectsSection({ showLink = true }: { showLink?: boolea
           <div className="min-h-[360px] overflow-hidden border border-white/10 bg-[#0b100e] lg:min-h-[520px]">
             <MapLoader dark />
           </div>
-        </Reveal>
-
-        {/* Franja de proyectos reales */}
-        <Reveal delay={200} className="mt-6 flex flex-col gap-6 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-center gap-4">
-            <div className="flex -space-x-3">
-              {CAROUSEL_PHOTOS.slice(0, 4).map((photo) => (
-                <div
-                  key={photo.src}
-                  className="relative h-14 w-14 overflow-hidden border-2 border-[var(--color-carbon)] sm:h-16 sm:w-16"
-                >
-                  <Image src={photo.src} alt={photo.alt} fill className="object-cover" sizes="64px" />
-                </div>
-              ))}
-            </div>
-            <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--color-lime)]">
-                Proyectos reales
-              </p>
-              <h3 className="mt-1 text-lg font-medium text-white">Nuestro trabajo, de cerca.</h3>
-            </div>
-          </div>
-          <Link
-            href="/proyectos"
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-white/80 underline decoration-white/30 underline-offset-4 hover:text-white"
-          >
-            Ver galería de proyectos →
-          </Link>
         </Reveal>
 
         {/* Frase de marca */}

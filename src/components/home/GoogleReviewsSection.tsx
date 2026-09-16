@@ -48,20 +48,19 @@ export default async function GoogleReviewsSection() {
           </CtaButton>
         </div>
 
-        <div className="mt-16 flex snap-x gap-10 overflow-x-auto pb-4 sm:grid sm:grid-cols-3 sm:overflow-visible">
-          {reviews.slice(0, 6).map((review) => (
-            <div key={review.id} className="w-[80vw] flex-shrink-0 snap-start sm:w-auto">
-              <svg viewBox="0 0 32 24" className="h-7 w-9 fill-[var(--color-grass)]/25">
-                <path d="M0 24V13.5C0 6 4.5 1 12 0l1.5 4C8 5.5 5.5 8.5 5.5 13H12v11H0Zm18 0V13.5C18 6 22.5 1 30 0l1.5 4C26 5.5 23.5 8.5 23.5 13H30v11H18Z" />
-              </svg>
+        <div className="mt-16 grid gap-x-14 gap-y-12 sm:grid-cols-2">
+          {reviews.slice(0, 5).map((review) => (
+            <div key={review.id} className="border-t border-[var(--color-line)] pt-6">
               <Stars rating={review.rating} />
-              <p className="mt-4 text-lg font-medium leading-snug text-[var(--color-ink)]">
-                {review.text}
+              <p className="mt-4 text-[16px] leading-relaxed text-[var(--color-ink)]">
+                “{review.text}”
               </p>
-              <p className="mt-5 border-t border-[var(--color-line)] pt-4 text-sm font-medium text-[var(--color-ink-soft)]">
-                {review.author}
-                {review.date && <span className="font-normal opacity-70"> · {review.date}</span>}
-              </p>
+              <div className="mt-5 flex items-baseline justify-between gap-3">
+                <p className="text-sm font-medium text-[var(--color-ink)]">{review.author}</p>
+                {review.date && (
+                  <p className="flex-shrink-0 text-xs text-[var(--color-ink-soft)]">{review.date}</p>
+                )}
+              </div>
             </div>
           ))}
         </div>

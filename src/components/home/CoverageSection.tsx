@@ -19,8 +19,8 @@ const FEATURED_WORK = [
     label: "Gimnasio",
   },
   {
-    src: "/images/hero/cancha-hero.jpg",
-    alt: "Cancha de fútbol con césped sintético instalado por Más Verde",
+    src: "/images/productos/cesped-futbol/futbol-6.jpg",
+    alt: "Detalle de fibra de césped sintético para cancha de fútbol",
     label: "Cancha de fútbol",
   },
   {

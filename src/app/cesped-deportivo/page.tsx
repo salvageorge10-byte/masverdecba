@@ -24,8 +24,8 @@ export default function CespedDeportivoPage() {
     <main>
       <section className="relative flex min-h-[70vh] items-end overflow-hidden bg-[var(--color-carbon)]">
         <Image
-          src="/images/productos/cesped-futbol/futbol-4.jpg"
-          alt="Césped sintético deportivo de alta densidad"
+          src="/images/productos/cesped-futbol/futbol-2.jpg"
+          alt="Detalle de línea de cancha en césped sintético deportivo"
           fill
           priority
           className="object-cover"

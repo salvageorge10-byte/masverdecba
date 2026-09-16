@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Reveal from "@/components/Reveal";
-import Counter from "@/components/Counter";
 import CtaButton from "@/components/CtaButton";
 import SectionHeading from "@/components/SectionHeading";
 import { getProductBySlug } from "@/data/products";
@@ -67,7 +66,7 @@ export default function FootballShowcase() {
             {product.stat && (
               <div>
                 <p className="font-display text-5xl font-medium text-[var(--color-grass)]">
-                  <Counter value={product.stat.value} />
+                  {product.stat.value}
                 </p>
                 <p className="mt-1 text-sm text-[var(--color-ink-soft)]">{product.stat.label}</p>
               </div>
