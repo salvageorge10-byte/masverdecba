@@ -1,12 +1,83 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { MAIN_NAV_LINKS } from "@/data/nav";
 import { COMPANY } from "@/data/company";
 import { whatsapp } from "@/lib/whatsapp";
 import { useCart } from "@/lib/cart-context";
+import { CATEGORY_LIST } from "@/data/categories";
+import { getProductsByCategory, formatPrice } from "@/data/products";
+
+function ProductsAccordion({ onClose }: { onClose: () => void }) {
+  return (
+    <div className="border-b border-white/10 pb-6">
+      <div className="space-y-6">
+        {CATEGORY_LIST.map((category) => {
+          const products = getProductsByCategory(category.slug);
+          if (products.length === 0) return null;
+
+          return (
+            <div key={category.slug}>
+              <Link
+                href={`/productos?categoria=${category.slug}`}
+                onClick={onClose}
+                className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-lime)]"
+              >
+                {category.name}
+              </Link>
+              <ul className="mt-3 space-y-3">
+                {products.map((product) => {
+                  const height = product.specs.find((s) => s.label === "Altura de fibra")?.value;
+                  return (
+                    <li key={product.slug}>
+                      <Link
+                        href={`/producto/${product.slug}`}
+                        onClick={onClose}
+                        className="flex items-center gap-3"
+                      >
+                        <div className="relative h-12 w-12 flex-shrink-0 overflow-hidden bg-white/5 ring-1 ring-inset ring-white/10">
+                          <Image
+                            src={product.images[0]}
+                            alt={product.name}
+                            fill
+                            className="object-cover"
+                            sizes="48px"
+                          />
+                        </div>
+                        <div className="min-w-0">
+                          <p className="truncate text-sm font-medium text-white/90">{product.name}</p>
+                          <p className="mt-0.5 text-xs text-white/45">
+                            {height && <span>{height}</span>}
+                            {height && product.price && <span className="mx-1.5 text-white/25">·</span>}
+                            {product.price && (
+                              <span className="text-[var(--color-lime)]/90">{formatPrice(product.price)}</span>
+                            )}
+                          </p>
+                        </div>
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          );
+        })}
+      </div>
+
+      <Link
+        href="/productos"
+        onClick={onClose}
+        className="mt-6 inline-flex w-full items-center justify-center gap-2 bg-[var(--color-lime)] px-5 py-3 text-[12px] font-semibold uppercase tracking-wide text-[var(--color-carbon)]"
+      >
+        Ver todos los productos
+        <span aria-hidden>→</span>
+      </Link>
+    </div>
+  );
+}
 
 export default function MobileMenu({
   open,
@@ -17,6 +88,7 @@ export default function MobileMenu({
 }) {
   const pathname = usePathname();
   const { totalItems, open: openCart } = useCart();
+  const [productsOpen, setProductsOpen] = useState(false);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -24,6 +96,11 @@ export default function MobileMenu({
       document.body.style.overflow = "";
     };
   }, [open]);
+
+  const handleClose = () => {
+    setProductsOpen(false);
+    onClose();
+  };
 
   return (
     <div
@@ -39,13 +116,13 @@ export default function MobileMenu({
       />
 
       <div
-        className={`relative flex h-full flex-col px-8 pt-28 pb-10 transition-transform duration-400 ${
+        className={`relative flex h-full flex-col overflow-y-auto px-8 pt-28 pb-10 transition-transform duration-400 ${
           open ? "translate-y-0" : "-translate-y-4"
         }`}
       >
         <button
           type="button"
-          onClick={onClose}
+          onClick={handleClose}
           aria-label="Cerrar menú"
           className="absolute right-7 top-8 flex h-10 w-10 items-center justify-center text-white"
         >
@@ -55,26 +132,58 @@ export default function MobileMenu({
         </button>
 
         <nav className="flex flex-col gap-1">
-          {MAIN_NAV_LINKS.map((link, i) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={onClose}
-              className={`border-b border-white/10 py-4 text-3xl font-medium tracking-tight text-white transition-colors ${
-                pathname === link.href ? "text-[var(--color-lime)]" : "hover:text-white/70"
-              }`}
-              style={{ transitionDelay: `${i * 20}ms` }}
-            >
-              {link.label}
-            </Link>
-          ))}
+          {MAIN_NAV_LINKS.map((link, i) => {
+            if (link.href === "/productos") {
+              return (
+                <div key={link.href} className="border-b border-white/10">
+                  <button
+                    type="button"
+                    onClick={() => setProductsOpen((v) => !v)}
+                    aria-expanded={productsOpen}
+                    className={`flex w-full items-center justify-between py-4 text-3xl font-medium tracking-tight transition-colors ${
+                      pathname === link.href ? "text-[var(--color-lime)]" : "text-white hover:text-white/70"
+                    }`}
+                    style={{ transitionDelay: `${i * 20}ms` }}
+                  >
+                    {link.label}
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.6"
+                      className={`h-5 w-5 flex-shrink-0 transition-transform duration-200 ${
+                        productsOpen ? "rotate-45" : ""
+                      }`}
+                    >
+                      <path d="M12 5v14M5 12h14" strokeLinecap="round" />
+                    </svg>
+                  </button>
+                  {productsOpen && <ProductsAccordion onClose={handleClose} />}
+                </div>
+              );
+            }
+
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={handleClose}
+                className={`border-b border-white/10 py-4 text-3xl font-medium tracking-tight text-white transition-colors ${
+                  pathname === link.href ? "text-[var(--color-lime)]" : "hover:text-white/70"
+                }`}
+                style={{ transitionDelay: `${i * 20}ms` }}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </nav>
 
-        <div className="mt-auto flex flex-col gap-6">
+        <div className="mt-auto flex flex-col gap-6 pt-8">
           <button
             type="button"
             onClick={() => {
-              onClose();
+              handleClose();
               openCart();
             }}
             className="inline-flex items-center justify-center gap-2 border border-white/25 px-6 py-4 text-sm font-semibold uppercase tracking-wide text-white transition-colors hover:bg-white hover:text-[var(--color-carbon)]"
@@ -85,7 +194,7 @@ export default function MobileMenu({
             href={whatsapp.general()}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={onClose}
+            onClick={handleClose}
             className="inline-flex items-center justify-center gap-2 bg-[var(--color-lime)] px-6 py-4 text-sm font-semibold uppercase tracking-wide text-[var(--color-carbon)]"
           >
             Hablar por WhatsApp

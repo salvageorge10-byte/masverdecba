@@ -8,7 +8,6 @@ import DesktopNav from "@/components/DesktopNav";
 import MobileMenu from "@/components/MobileMenu";
 import MegaMenu from "@/components/MegaMenu";
 import CartButton from "@/components/cart/CartButton";
-import { whatsapp } from "@/lib/whatsapp";
 import { COMPANY, LOCATIONS } from "@/data/company";
 import { PRODUCTS } from "@/data/products";
 
@@ -144,25 +143,25 @@ export default function Header() {
   return (
     <>
       <div className="fixed inset-x-0 top-0 z-40 hidden bg-[var(--color-carbon)] xl:block">
-        <div className="mx-auto flex max-w-[1440px] items-center justify-between px-10 py-2 text-[12px] text-white/70">
-          <div className="flex items-center gap-6">
-            <span className="inline-flex items-center gap-1.5">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className="h-3.5 w-3.5">
+        <div className="mx-auto flex max-w-[1440px] items-center justify-between px-10 py-2.5 text-[13px] text-white/85">
+          <div className="flex items-center gap-7">
+            <span className="inline-flex items-center gap-2">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className="h-[18px] w-[18px] text-[var(--color-lime)]">
                 <path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z" strokeLinejoin="round" />
                 <circle cx="7" cy="18" r="1.4" />
                 <circle cx="17" cy="18" r="1.4" />
               </svg>
               Envíos a todo el país
             </span>
-            <span className="inline-flex items-center gap-1.5">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className="h-3.5 w-3.5">
+            <span className="inline-flex items-center gap-2">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className="h-[18px] w-[18px] text-[var(--color-lime)]">
                 <rect x="3" y="4" width="18" height="17" rx="2" />
                 <path d="M3 9h18M8 3v3M16 3v3" strokeLinecap="round" />
               </svg>
               Hasta 3 cuotas sin interés
             </span>
-            <span className="inline-flex items-center gap-1.5">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className="h-3.5 w-3.5">
+            <span className="inline-flex items-center gap-2">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className="h-[18px] w-[18px] text-[var(--color-lime)]">
                 <path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z" strokeLinejoin="round" />
                 <path d="m9 12 2 2 4-4" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
@@ -171,23 +170,35 @@ export default function Header() {
           </div>
 
           <div className="flex items-center gap-5">
-            <span className="inline-flex items-center gap-1.5">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className="h-3.5 w-3.5">
+            <span className="inline-flex items-center gap-2">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className="h-[18px] w-[18px] text-[var(--color-lime)]">
                 <path d="M12 21s7-5.5 7-11a7 7 0 0 0-14 0c0 5.5 7 11 7 11Z" strokeLinejoin="round" />
                 <circle cx="12" cy="10" r="2.3" />
               </svg>
               {city}, Argentina
             </span>
-            <div className="flex items-center gap-3">
-              <a href={COMPANY.instagramUrl} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-white">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className="h-3.5 w-3.5">
+            <div className="flex items-center gap-2.5">
+              <a
+                href={COMPANY.instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="flex h-8 w-8 items-center justify-center border border-white/20 text-white transition-colors hover:border-[var(--color-lime)] hover:text-[var(--color-lime)]"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" className="h-[18px] w-[18px]">
                   <rect x="3" y="3" width="18" height="18" rx="5" />
                   <circle cx="12" cy="12" r="4" />
                   <circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none" />
                 </svg>
               </a>
-              <a href={COMPANY.facebookUrl} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:text-white">
-                <svg viewBox="0 0 24 24" fill="currentColor" className="h-3.5 w-3.5">
+              <a
+                href={COMPANY.facebookUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                className="flex h-8 w-8 items-center justify-center border border-white/20 text-white transition-colors hover:border-[var(--color-lime)] hover:text-[var(--color-lime)]"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" className="h-[18px] w-[18px]">
                   <path d="M13.5 21v-8.1h2.7l.4-3.2h-3.1V7.7c0-.9.3-1.6 1.6-1.6h1.7V3.2C16.5 3.1 15.4 3 14.2 3c-2.5 0-4.3 1.6-4.3 4.4v2.3H7.2v3.2h2.7V21h3.6z" />
                 </svg>
               </a>
@@ -229,15 +240,6 @@ export default function Header() {
               <SearchBox light={light} />
             </div>
             <CartButton light={light} />
-            <a
-              href={whatsapp.quoteProject()}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden items-center gap-2 bg-[var(--color-grass)] px-5 py-2.5 text-[13px] font-semibold uppercase tracking-wide text-white transition-colors hover:bg-[var(--color-forest)] xl:inline-flex"
-            >
-              Solicitar presupuesto
-              <span aria-hidden>→</span>
-            </a>
 
             <button
               type="button"

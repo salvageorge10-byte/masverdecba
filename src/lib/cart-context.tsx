@@ -28,7 +28,15 @@ export function CartProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     try {
       const raw = window.localStorage.getItem(STORAGE_KEY);
-      if (raw) setItems(JSON.parse(raw));
+      if (raw) {
+        // Los carritos guardados antes de que existiera `min` no lo traen:
+        // se completa con la misma regla que usa AddToCartButton para que
+        // la compra mínima se respete igual en un carrito viejo.
+        const stored: CartItem[] = JSON.parse(raw);
+        setItems(
+          stored.map((i) => ({ ...i, min: i.min ?? (i.priceUnit?.includes("m2") ? 15 : 1) }))
+        );
+      }
     } catch {
       // localStorage no disponible o dato corrupto: arrancamos con carrito vacío.
     }
@@ -58,7 +66,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const updateQuantity = (slug: string, quantity: number) => {
     setItems((prev) =>
       prev
-        .map((i) => (i.slug === slug ? { ...i, quantity: Math.max(i.step, quantity) } : i))
+        .map((i) => (i.slug === slug ? { ...i, quantity: Math.max(i.min ?? i.step, quantity) } : i))
         .filter((i) => i.quantity > 0)
     );
   };

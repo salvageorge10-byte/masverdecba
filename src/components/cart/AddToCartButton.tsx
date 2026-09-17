@@ -22,6 +22,7 @@ export default function AddToCartButton({ product, className = "" }: { product: 
           priceUnit: product.priceUnit,
           image: product.images[0],
           step: unitIsM2 ? 5 : 1,
+          min: defaultQty,
           quantity: defaultQty,
         });
         metaPixel.addToCart({
