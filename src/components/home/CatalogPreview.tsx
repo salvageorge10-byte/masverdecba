@@ -61,12 +61,14 @@ export default function CatalogPreview() {
             </Link>
           </div>
 
-          <div className="mt-8 flex snap-x gap-6 overflow-x-auto pb-2 sm:overflow-visible">
+          {/* En mobile es un carrusel: el padding final evita que la última
+              tarjeta quede cortada contra el borde de la pantalla. */}
+          <div className="-mr-6 mt-8 flex snap-x gap-4 overflow-x-auto pb-2 pr-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mr-0 sm:gap-6 sm:overflow-visible sm:pr-0">
             {secundarios.map((product, i) => (
               <div
                 key={product.slug}
                 className={`group flex-shrink-0 snap-start ${
-                  i === 0 ? "w-[70vw] sm:w-auto sm:flex-[2]" : "w-[45vw] sm:w-auto sm:flex-1"
+                  i === 0 ? "w-[68vw] sm:w-auto sm:flex-[2]" : "w-[60vw] sm:w-auto sm:flex-1"
                 }`}
               >
                 <Link href={`/producto/${product.slug}`} className="block">
@@ -80,7 +82,7 @@ export default function CatalogPreview() {
                     />
                   </div>
                 </Link>
-                <div className="mt-3 flex items-baseline justify-between gap-3">
+                <div className="mt-3 flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-3">
                   <Link href={`/producto/${product.slug}`} className="text-sm text-[var(--color-ink)] hover:underline">
                     {product.name}
                   </Link>

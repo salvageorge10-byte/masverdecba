@@ -14,7 +14,19 @@ export default function Hero() {
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
-    if (prefersReducedMotion || window.innerWidth < 640) return;
+    if (prefersReducedMotion) return;
+
+    // El video pesa ~4MB: se omite si el visitante pidió ahorro de datos o
+    // está en una conexión lenta. En el resto de los casos va también en
+    // mobile, con la foto como poster mientras carga.
+    const connection = (
+      navigator as Navigator & {
+        connection?: { saveData?: boolean; effectiveType?: string };
+      }
+    ).connection;
+    if (connection?.saveData) return;
+    if (connection?.effectiveType && /2g/.test(connection.effectiveType)) return;
+
     setShowVideo(true);
   }, []);
 
@@ -42,8 +54,10 @@ export default function Hero() {
         </video>
       )}
 
-      <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-carbon)] via-[var(--color-carbon)]/35 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-carbon)] via-[var(--color-carbon)]/45 to-[var(--color-carbon)]/20" />
       <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-carbon)]/60 via-transparent to-transparent" />
+      {/* Asegura que el logo y el menú se lean sobre la parte clara de la foto */}
+      <div className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-[var(--color-carbon)]/85 to-transparent" />
 
       <div className="relative w-full px-6 pb-10 lg:px-10 lg:pb-14">
         <div className="mx-auto max-w-[1440px]">

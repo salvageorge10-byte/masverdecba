@@ -29,8 +29,8 @@ const SPACES = [
     cta: "Ver césped decorativo",
     href: "/cesped-decorativo",
     external: false,
-    image: "/images/proyectos/patio-transformacion.jpg",
-    alt: "Patio residencial transformado con césped sintético",
+    image: "/images/productos/cesped-40mm/40-4.jpg",
+    alt: "Césped sintético decorativo instalado en un jardín",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className="h-5 w-5">
         <path d="M3 11l9-7 9 7M5 10v10h14V10" strokeLinecap="round" strokeLinejoin="round" />
@@ -44,7 +44,7 @@ const SPACES = [
     cta: "Consultar proyecto",
     href: whatsapp.quoteProject({ tipoProyecto: "Gimnasio o proyecto comercial" }),
     external: true,
-    image: "/images/proyectos/gimnasio-piso-cesped.jpg",
+    image: "/images/proyectos/gimnasio-detalle.jpg",
     alt: "Gimnasio con piso de césped sintético instalado",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className="h-5 w-5">
